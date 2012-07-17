@@ -12,6 +12,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_many :microposts, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 
   before_save { self.email.downcase! }
   before_save :create_remember_token
